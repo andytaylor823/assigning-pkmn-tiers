@@ -47,7 +47,6 @@ test_y = np.array(data[test_idxs, -1], dtype = float)
 #clf = svm.LinearSVC(random_state=173950)
 clf = linear_model.Lasso(alpha = 0.1)		# this is pretty decent
 #clf = neighbors.KNeighborsClassifier(n_neighbors=10, weights='distance')	# this isn't that great
-#clf = linear_model.SGDRegressor(random_state = 279024)		# this is only good with huge datasets
 clf.fit(train_X, train_y)
 predict_y = clf.predict(test_X)
 
@@ -58,6 +57,7 @@ print('This was %.1f percent right' %(nright/len(test_y)*100))
 print('Trained on', len(train_y), 'data points')
 print('Tested on ', len(test_y), ' data points')
 print('MAE = %.1f' %mae(test_y, predict_y))
+print('--------------------------------------------')
 
 for i in range(len(test_y)):
 
@@ -65,22 +65,9 @@ for i in range(len(test_y)):
 	ty = test_y[i]
 	# check if they're farther away +/- some amount of the right value
 	if abs(py - ty) > closeness:
-#		true_tier = num_to_tier[ty]
-#		predict_tier = num_to_tier[py]
 		name = names[test_idxs[i]]
-#		print(names[test_idxs[i]], ' has a true tier of ', true_tier, ' but the ML says it was in ', predict_tier)
 
 		line = name
 		for k in range(3, len(name)//8, -1):	line += '\t'
 		line += '\t%.1f\t%.1f'
 		print(line %(ty, py))
-#		print('%s\t%.1f\t%.1f' %(name, ty, py))
-#		print(name, '\t', ty, '\t', py)
-
-
-
-
-
-
-
-
