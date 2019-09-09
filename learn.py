@@ -47,7 +47,7 @@ test_y = np.array(data[test_idxs, -1], dtype = float)
 
 # use 4 different fitting models to compare accuracy
 x = 2638952
-models = [svm.LinearSVC(random_state=x, max_iter=1e4), 
+models = [svm.LinearSVC(random_state=x, max_iter=1e5), 
 	  linear_model.Lasso(random_state=x, alpha=0.1), 
 	  neighbors.KNeighborsClassifier(n_neighbors=5, weights='distance'),
 	  svm.SVR(kernel='linear')]
